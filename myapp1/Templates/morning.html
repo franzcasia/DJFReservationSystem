@@ -1,0 +1,140 @@
+{% load static %}
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+	<title>Booking Form HTML Template</title>
+
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+
+	<!-- Bootstrap -->
+	<link type="text/css" rel="stylesheet" href="{% static 'sample/css/bootstrap.min.css' %}" />
+
+	<!-- Custom stlylesheet -->
+	<link rel= "stylesheet" type= "text/css" href="{% static 'sample/css/style1.css' %}">
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+
+</head>
+{% block content %}
+<body>
+	<div id="booking" class="section">
+		<div class="section-center">
+			<div class="container">
+				<div class="row">
+					<div class="booking-form">
+						<div class="form-header">
+							<h1>Reservation Details</h1>
+						</div>
+						<form action="" method="POST" >
+							{% csrf_token %}
+							<div class="row">
+								<div class="col-sm-6">
+									<div class="form-group">
+										<span class="form-label">Reservation Number</span>
+										<input name="res_number" class="form-control" type="text" placeholder="Enter your name">
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="form-group">
+										<span class="form-label">Name</span>
+										<input name="Name" class="form-control" type="" placeholder="Enter your email">
+									</div>
+								</div>
+							</div>
+
+							
+							<span style="text-align: center; font-weight: 500;"  class="form-label">Address</span>
+							<div class="row">
+								<div class="col-sm-4">
+									<div class="form-group">
+										<input name="Address" class="form-control" type="text" placeholder="Street">
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="form-group">
+										<input class="form-control" type="Ci" placeholder="City">
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="form-group">
+										<input class="form-control" type="email" placeholder="Province">
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-sm-6">
+									<div class="form-group">
+										<span class="form-label">Telephone Number</span>
+										<input name="tel_Number" class="form-control" type="text" placeholder="Telephone Number">
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="form-group">
+										<span class="form-label">Conference Room Number</span>
+										<input name="room_number" class="form-control" type="text" placeholder="Conference Room Number">
+									</div>
+								</div>
+							</div>
+
+							<span style="text-align: center; font-weight: 500;"  class="form-label">Date and Time</span>
+
+							<div class="row">
+								<div class="col-sm-6">
+									<div class="form-group">
+										<input name="date" class="form-control" type="date" >
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="form-group">
+										<input name="time" class="form-control" >
+										
+									</div>
+								</div>
+							</div>
+						
+							
+						<br><br>
+							<div class="form-btn">
+								<!-- <form action="dash"> -->
+									<button type="submit" class="submit-btn">Reserve Now</button>
+								<!-- </form> -->
+								
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<footer class="footer py-4">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-lg-4 text-lg-start">Copyright &copy; Your Website 2021</div>
+				<div class="col-lg-4 my-3 my-lg-0">
+					<a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
+					<a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
+					<a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
+				</div>
+				<div class="col-lg-4 text-lg-end">
+					<a class="link-dark text-decoration-none me-3" href="#!">Privacy Policy</a>
+					<a class="link-dark text-decoration-none" href="#!">Terms of Use</a>
+				</div>
+			</div>
+		</div>
+	</footer>
+</body>
+{% endblock content %}
+</html>

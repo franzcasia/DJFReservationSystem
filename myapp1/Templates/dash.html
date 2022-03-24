@@ -1,0 +1,193 @@
+
+        
+{% block headerinclude %}
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <link rel="stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+        <link rel = "stylesheet" href = "https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
+        <style>
+            .button {
+              background-color: #4CAF50; /* Green */
+              border: none;
+              color: white;
+              padding: 15px 32px;
+              text-align: center;
+              text-decoration: none;
+              display: inline-block;
+              font-size: 16px;
+              margin: 4px 2px;
+              cursor: pointer;
+            }
+
+            .button1 {width: 200px;}
+        </style>
+    {% endblock headerinclude %}
+    
+    {% block footerinclude %}
+        <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <script src = "https://code.jquery.com/jquery-3.5.1.js"></script>
+       <!--  <script src ="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script> -->
+        <script src ="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>             
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script>
+                $(document).ready(function() {
+                    $('#example').DataTable();
+                });
+        </script>
+    {% endblock footerinclude %}
+
+    {% block content %}
+        <div style='background-color:#ffff00'>
+            <center><p style="color:white"><h2>DASHBOARD</h2></p></center>
+        </div>
+        <div>
+            <p><h5>STUDENT REPORT</h5></p>
+        </div>
+        
+        <table id="example" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>res_number</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>tel_Number</th>
+                <th>room_number</th>
+                <th>date</th>
+                <th>time</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>              
+            {% for resBook in resBook %}                          
+            <tr>
+              <td>{{resBook.id}}</td>
+                <td>{{resBook.res_number}}</td>
+                <td>{{resBook.Name}}</td>
+                <td>{{resBook.Address}}</td>
+                <td>{{resBook.tel_Number}}</td>
+                <td>{{resBook.room_number}}</td>
+                <td>{{resBook.date}}</td>
+                <td>{{resBook.time}}</td>
+                <td>
+                    <a type="button" class="btn btn-primary" href="#" data-toggle="modal" data-target="#newModal-{{resBook.id}}">VIEW</a>
+
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal-{{resBook.id}}">
+                      DELETE
+                    </button>
+                </td>
+            </tr>
+            <!-- Modal VIEW-->
+              <div class="modal fade" id="newModal-{{resBook.id}}" tabindex="-1" role="dialog" aria-labelledby="newModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header" style="background-color:#fff000">
+                      <h5 class="modal-title">VIEW DETAILS</h5>
+                      <button type="button" class="close" data-dismiss=" " aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <form id="updateForm" method="post" >
+                    {% csrf_token %}
+                    <div class="modal-body">
+                      <input hidden type="text" name="resBook-id" value = {{resBook.id}} >
+                      <div class="row">
+                        <div class="col-12" id="startup-tab-1">
+                            <div class = "row">
+                              <div class = "col-sm-4">
+                                <label>RESERVATION NUMBER</label>
+                                <input type="text" class="form-control" id="id-firstname" placeholder="" name="resBook-res_number" value ={{resBook.res_number}}>
+                              </div>
+                              <div class = "col-sm-4">
+                                <label>NAME</label>
+                                <input type="text" class="form-control" id="id-middlename" placeholder="Middlename"  name="resBook-name" value ={{resBook.Name}}>
+                              </div>
+                              <div class = "col-sm-4">
+                                <label>ADDRESS</label>
+                                <input type="text" class="form-control" id="id-lastname" placeholder="Lastname"  name="resBook-Address" value ={{resBook.Address}}>
+                              </div>
+                            </div>
+                            <div class = "row">
+                            <div class = "col-sm-6">
+                              <label>TELEPHONE NUMBER</label>
+                              <input type="text" class="form-control" id="id-add-brgy" placeholder="Barangay"  name="resBook-tel_Number" value ={{resBook.tel_Number}}>
+                            </div>
+                            <div class = "col-sm-6">
+                              <label>ROOM NUMBER</label>
+                              <input type="text" class="form-control" id="id-add-city" placeholder="City"  name="resBook-room_number" value ={{resBook.room_number}}>
+                            </div>
+                          </div>
+                          <div class = "row">
+                            <div class = "col-sm-6">
+                              <label>DATE</label>
+                              <input type="date" class="form-control" id="id-bdate" name="resBook-date" value = {{resBook.date}}>
+                            </div>
+                            <div class = "col-sm-6">
+                              <label>TIME</label>
+                              <input type="text" class="form-control" id="id-bplace" placeholder="Birthplace" name="resBook-time" value = {{resBook.time}}>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-footer">  
+                        <button type="submit" id = "btnUpdate" name = "btnUpdate" class="button">UPDATE</button>                                  
+                        <button type="button" class="button btn-secondary" data-dismiss="modal">CLOSE</button>                          
+                    </div>
+                  </div>
+                </form>
+                </div>
+              </div>
+
+              <!-- Modal DELETE-->
+              <div class="modal fade" id="exampleModal-{{resBook.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">DELETE RECORD</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <form id="deleteForm" method="post" >
+                    {% csrf_token %} 
+                    <div class="modal-body">                       
+                      <input hidden type="text" name="rresBook-id" value = {{resBook.id}} >
+                      Are you sure you want to delete this record?
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">NO</button>
+                      <button type="submit" id = "btnDelete" name = "btnDelete" class="btn btn-primary">YES</button>
+                    </div>
+                  </div>
+                </form>
+                </div>
+              </div>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <br><br>
+        <div>
+            <p><h5>SUBJECT REPORT</h5></p>
+        </div>
+        
+        <table id="example" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <th>SUBJECT CODE</th>
+                <th>DESCRIPTION</th>
+                <th>UNITS</th>                   
+            </tr>
+        </thead>           
+    </table>
+{% endblock content %}
+
+
+
+
+
+
