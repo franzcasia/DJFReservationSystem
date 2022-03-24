@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-wjx@btk$wcxl$v9g0ymw)86u6f(&nkxjk$6nw&kg6#-ei_*v26
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'casia-djfreservationsystem.azurewebsites.net', 'https://casia-djfreservationsystem.azurewebsites.net']
 
 
 # Application definition
